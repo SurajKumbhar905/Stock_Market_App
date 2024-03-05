@@ -49,15 +49,12 @@ const AppStack = () => {
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={() => ({
-        
-        
         tabBarStyle: {
           // alignItems: 'flex-end',
           height: 87,
           elevation: 0,
           borderWidth: 0,
-          borderColor: 'white',
-          
+          borderColor: 'white', 
         },
         tabBarShowLabel: false,
         tabBarActiveTintColor: 'black',
