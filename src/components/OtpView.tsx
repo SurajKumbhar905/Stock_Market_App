@@ -1,5 +1,5 @@
 import { NativeSyntheticEvent, StyleSheet, Text, TextInput, TextInputKeyPressEventData, View } from 'react-native'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 type OTPInputProps = {
     length: number,
@@ -57,6 +57,10 @@ const OtpView = ({length , value , disabled , onChange} : OTPInputProps) => {
         }
     }
 
+    useEffect(() => {
+       inputRefs.current[0].focus()
+    }, [])
+    
     
 
   return (

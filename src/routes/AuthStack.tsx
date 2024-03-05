@@ -23,14 +23,11 @@ export type AuthParamList = {
 
 
 const Stack = createNativeStackNavigator<AuthParamList>();
-
 const AuthStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShadowVisible: false,
-        statusBarColor: 'white',
-        statusBarStyle: 'dark',
         // headerBackVisible : false
       }}>
       <Stack.Screen
@@ -39,8 +36,8 @@ const AuthStack = () => {
           headerTitle: props => (
             <DefaultNavigationBar
               {...props}
-              showBackButton={false}
-              showTitle={false}
+              showBackButton={true}
+              showTitle={true}
             />
           ),
         }}
@@ -48,12 +45,13 @@ const AuthStack = () => {
       <Stack.Screen
         name="Signup"
         options={{
-          headerTransparent : true,
+         
+          // headerTransparent : true,
           headerTitle: props => (
             <DefaultNavigationBar
               {...props}
-              showBackButton={false}
-              showTitle={false}
+              showBackButton={true}
+              showTitle={true}
             />
           ),
         }}

@@ -1,13 +1,16 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import { PrimaryButton } from '../components/Button'
 import {NativeStackScreenProps} from '@react-navigation/native-stack'
 import { AuthParamList } from '../routes/AuthStack'
+import { AuthContext } from '../Context/AuthContext'
 
 type SetupScreenProps = NativeStackScreenProps<AuthParamList , 'SetupScreen'>
 
 
 const SetupScreen = ({navigation}:SetupScreenProps) => {
+  const {isLoggedIn , setLogeedin} = useContext(AuthContext)
+  
   return (
     <View style = {{flex : 1 , backgroundColor : 'white' , justifyContent : 'space-between' , paddingVertical : 30}}>
     <View style = {{flex : 1/2 , justifyContent : 'flex-end' , alignItems : 'center' ,}}>
@@ -21,7 +24,7 @@ const SetupScreen = ({navigation}:SetupScreenProps) => {
      </View>
      </View>
      <View style = {{alignItems : 'center'}}>
-        <PrimaryButton title='I’m ready to start!' height={56} width={'90%'} onPress={()=>navigation.replace('OnboardingScreen')}/>
+        <PrimaryButton title='I’m ready to start!' height={56} width={'90%'} onPress={()=>setLogeedin(true)}/>
      </View>
     </View>
   )

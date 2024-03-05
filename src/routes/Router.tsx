@@ -1,16 +1,21 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import AuthStack from './AuthStack'
-import AppStack from './AppStack'
+import React, {useContext, useEffect} from 'react';
+import AuthStack from './AuthStack';
+import AppStack from './AppStack';
 
-import {NavigationContainer} from '@react-navigation/native'
+import {NavigationContainer} from '@react-navigation/native';
+import {AuthContext} from '../Context/AuthContext';
 
 const Router = () => {
+  const {isLoggedIn, setLogeedin} = useContext(AuthContext);
+  useEffect(() => {
+    setLogeedin(true);
+  }, []);
+
   return (
     <NavigationContainer>
-        <AuthStack/>
+      {isLoggedIn ? <AppStack /> : <AuthStack />}
     </NavigationContainer>
-  )
-}
+  );
+};
 
-export default Router
+export default Router;
