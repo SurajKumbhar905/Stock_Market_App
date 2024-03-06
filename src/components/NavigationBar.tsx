@@ -8,9 +8,11 @@ import {
 import React from 'react';
 
 import {useNavigation} from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 const navigation = useNavigation();
 let deviceWidth = Dimensions.get('window').width;
+const {t, i18n} = useTranslation();
 
 export const HomeScreenNavigation = ({
   children,
@@ -33,9 +35,10 @@ export const HomeScreenNavigation = ({
         width: deviceWidth,
         flexDirection: 'row',
         paddingHorizontal: 16,
+
       }}>
       <Image
-        style={{width: deviceWidth / 3, height: 27}}
+        style={{width: deviceWidth / 3, height: 27 , resizeMode : 'contain'}}
         source={require('../../assets/Images/logo.png')}
       />
       <TouchableOpacity style={{}}>
@@ -62,7 +65,7 @@ export const DefaultNavigationBar = ({
   showBackButton,
   showTitle,
 }: {
-  children: React.ReactNode;
+  children: string;
   showBackButton: boolean;
   showTitle: boolean;
 }) => {
@@ -81,7 +84,7 @@ export const DefaultNavigationBar = ({
       {showTitle && (
         <Text
           style={{fontSize: 18, fontFamily: 'Inter-Bold', color: '#000000'}}>
-          {children}
+          {t(children)}
         </Text>
       )}
       {showBackButton && navigation.canGoBack() && (

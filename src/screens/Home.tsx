@@ -12,48 +12,18 @@ import React, {useEffect} from 'react';
 import TopGainer from '../components/TopGainer';
 import StockList from '../components/StockList';
 import {StockDataBase} from '../Data/StockDataBase';
+import { useTranslation } from 'react-i18next';
 
 
 const Home = () => {
-  const getMoviesFromApiAsync = async () => {
-    try {
-      const response = await fetch(
-        'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo',
-      );
-      const json = await response.json();
-      if ('Time Series (5min)' in json) {
-        const timeSeriesDaily = json['Time Series (5min)'];
 
-        // Iterate over the properties of timeSeriesDaily
-        for (const date in timeSeriesDaily) {
-          if (timeSeriesDaily.hasOwnProperty(date)) {
-            const dailyData = timeSeriesDaily[date];
-            console.log('Date:', date);
-            console.log('Daily Data:', dailyData);
-            // You can now access properties of dailyData, such as "open", "high", "low", "close", etc.
-          }
-        }
-      } else {
-        throw new Error('Time Series (Daily) not found in API response');
-      }
+  const { t, i18n } = useTranslation();
 
-      if ('Meta Data' in json) {
-        const metaData = json['Meta Data'];
-        console.log('Metadata:', metaData);
-      } else {
-        throw new Error('Meta Data not found in API response');
-      }
-      // console.log(JSON.stringify(json, null, 2)) ;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  useEffect(() => {
-    // getMoviesFromApiAsync()
-  }, []);
+
+  
 
   return (
-    <View style={{flex: 1, backgroundColor: 'white', paddingHorizontal: 16}}>
+    <View style={{flex: 1, backgroundColor: 'white'}}>
       <StatusBar barStyle="dark-content" backgroundColor="white" />
 
       <FlatList
@@ -68,6 +38,7 @@ const Home = () => {
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 marginBottom: 25,
+                paddingHorizontal: 16
               }}>
               <Text
                 style={{
@@ -75,7 +46,7 @@ const Home = () => {
                   fontFamily: 'Inter-SemiBold',
                   fontSize: 18,
                 }}>
-                Wishlist
+                {t('WishList')}
               </Text>
               <TouchableOpacity
                 style={{justifyContent: 'center', alignItems: 'center'}}>

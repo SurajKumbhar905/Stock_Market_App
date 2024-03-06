@@ -22,7 +22,8 @@ const StockList = ({stockName, logo, companyName , price , persentage , data}: S
           flex: 1,
           flexDirection: 'row',
           justifyContent: 'space-between',
-          alignItems : 'flex-start'
+          alignItems : 'flex-start',
+          paddingHorizontal: 16
         }}>
         <View style={{flex: 1 / 2}}>
           <View style={{flex: 1}}>

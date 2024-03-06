@@ -1,0 +1,7 @@
+export {default as EN } from './EN.json'
+export {default as HI } from './HI.json'
+export {default as MR } from './MR.json'
+export {default as GU } from './GU.json'
+export {default as KA } from './KA.json'
+export {default as PN } from './PN.json'
+export {default as TM } from './TM.json'

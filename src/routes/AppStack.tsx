@@ -16,17 +16,74 @@ import PortfolioScreen from '../screens/PortfolioScreen';
 import OrderScreen from '../screens/OrderScreen';
 import NewesScreen from '../screens/NewesScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import {DefaultNavigationBar, HomeScreenNavigation} from '../components/NavigationBar';
+import {
+  DefaultNavigationBar,
+  HomeScreenNavigation,
+} from '../components/NavigationBar';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import LanguageScreen from '../screens/LanguageScreen';
+import AccountScreen from '../screens/AccountScreen';
+import {useTranslation} from 'react-i18next';
 
 export type AppStacParamList = {
   Home: undefined;
   PortfolioScreen: undefined;
   OrderScreen: undefined;
   NewesScreen: undefined;
-  ProfileScreen: undefined;
+  Setting: undefined;
+};
+
+export type SettingStackParamList = {
+  Profile: undefined;
+  Account: undefined;
+  BillingPyament: undefined;
+  Language: undefined;
+  Settings: undefined;
+  FAQ: undefined;
 };
 
 const Tab = createBottomTabNavigator<AppStacParamList>();
+
+const SettingStack = createNativeStackNavigator<SettingStackParamList>();
+const Setting = () => {
+  const {t, i18n} = useTranslation();
+  return (
+    <SettingStack.Navigator
+      initialRouteName="Profile"
+      screenOptions={{
+        headerShadowVisible: false,
+      }}>
+      <SettingStack.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          headerTitle: props => (
+            <DefaultNavigationBar
+              children="Profile"
+              showBackButton={true}
+              showTitle={true}
+            />
+          ),
+        }}
+      />
+      <SettingStack.Screen
+        name="Language"
+        component={LanguageScreen}
+        options={{
+          headerTitleAlign: 'center',
+          headerTitle: `${t('Language')}`,
+        }}
+      />
+      <SettingStack.Screen
+        name="Account"
+        component={AccountScreen}
+        options={{
+          headerTitleAlign: 'center',
+        }}
+      />
+    </SettingStack.Navigator>
+  );
+};
 
 const CouctomeTabBarButton = ({children, onPress}: BottomTabBarButtonProps) => (
   <TouchableOpacity
@@ -54,11 +111,10 @@ const AppStack = () => {
           height: 87,
           elevation: 0,
           borderWidth: 0,
-          borderColor: 'white', 
+          borderColor: 'white',
         },
         tabBarShowLabel: false,
         tabBarActiveTintColor: 'black',
-        
       })}>
       <Tab.Screen
         name="Home"
@@ -94,7 +150,7 @@ const AppStack = () => {
           // headerTransparent : true,
           headerTitle: props => (
             <DefaultNavigationBar
-              {...props}
+              children="PortfolioScreen"
               showBackButton={false}
               showTitle={false}
             />
@@ -146,8 +202,8 @@ const AppStack = () => {
           ),
         }}></Tab.Screen>
       <Tab.Screen
-        name="ProfileScreen"
-        component={ProfileScreen}
+        name="Setting"
+        component={Setting}
         options={{
           tabBarIcon({focused}) {
             let iconName: ImageProps;
@@ -158,14 +214,7 @@ const AppStack = () => {
           },
 
           // headerTransparent : true,
-          headerTitle: props => (
-            
-            <DefaultNavigationBar
-              {...props}
-              showBackButton={false}
-              showTitle={false}
-            />
-          ),
+          headerShown: false,
         }}></Tab.Screen>
     </Tab.Navigator>
   );
