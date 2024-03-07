@@ -15,17 +15,16 @@ import {StockDataBase} from '../Data/StockDataBase';
 import { useTranslation } from 'react-i18next';
 
 
+
 const Home = () => {
 
   const { t, i18n } = useTranslation();
-
 
   
 
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <StatusBar barStyle="dark-content" backgroundColor="white" />
-
       <FlatList
         nestedScrollEnabled={true}
         showsVerticalScrollIndicator = {false}

@@ -61,6 +61,7 @@ const OTPVerificationScreen = ({navigation}: OTPScreenProps) => {
               value={value}
               onChange={handleOtpChange}
               length={6}
+              isAutoFocus
             />
           </View>
           <View>

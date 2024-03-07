@@ -5,11 +5,12 @@ type OTPInputProps = {
     length: number,
     value: Array<string>,
     disabled: boolean,
-    onChange(value: Array<string>): void
+    onChange(value: Array<string>): void,
+    isAutoFocus : boolean
 }
 
 
-const OtpView = ({length , value , disabled , onChange} : OTPInputProps) => {
+const OtpView = ({length , value , disabled , onChange , isAutoFocus = true} : OTPInputProps) => {
     const [focusedIndex, setFocusedIndex] = useState<number | null>(null)
 
     const inputRefs = useRef<Array<NonNullable<TextInput>>>([])
@@ -58,7 +59,10 @@ const OtpView = ({length , value , disabled , onChange} : OTPInputProps) => {
     }
 
     useEffect(() => {
-       inputRefs.current[0].focus()
+        if (isAutoFocus){
+            inputRefs.current[0].focus()
+        }
+       
     }, [])
     
     
