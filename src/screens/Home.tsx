@@ -58,7 +58,7 @@ const Home = () => {
           </View>
         }
         data={StockDataBase}
-        style={{paddingTop: 18}}
+        style={{paddingTop: 18 , paddingHorizontal : 16}}
         renderItem={({index, item}) => {
           return (
             <StockList

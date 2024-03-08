@@ -1,9 +1,7 @@
 import {ImageProps, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import StockName from './StockName';
-
 import { LineChart} from 'react-native-gifted-charts'
-const data=[ {value:50}, {value:-80}, {value:100}, {value:10} ,{value:50}, {value:-80}, {value:100}, {value:10}]
 
 type StockListProps = {
   stockName: string;
@@ -23,7 +21,7 @@ const StockList = ({stockName, logo, companyName , price , persentage , data}: S
           flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems : 'flex-start',
-          paddingHorizontal: 16
+          // paddingHorizontal: 16
         }}>
         <View style={{flex: 1 / 2}}>
           <View style={{flex: 1}}>

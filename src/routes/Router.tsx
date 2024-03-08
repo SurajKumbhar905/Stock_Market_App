@@ -9,9 +9,10 @@ import PinScreen from '../screens/PinScreen';
 
 const Router = () => {
   const {isLoggedIn, setLogeedin} = useContext(AuthContext);
-  const {isPinMatch} = useContext(AppAuthenticationContext)
+  const {isPinMatch , setisPinMatch} = useContext(AppAuthenticationContext)
   useEffect(() => {
     setLogeedin(true);
+    setisPinMatch(true)
   }, []);
 
   return (

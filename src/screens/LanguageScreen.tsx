@@ -1,5 +1,5 @@
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 // import { debounce } from 'lodash';
 
@@ -30,6 +30,15 @@ const LanguageScreen = () => {
     setcolorIndex(index);
   };
 
+  const memoizedChangeLanguage = useCallback((languageCode:any, index:any) => {
+    i18n.changeLanguage(languageCode);
+    setcolorIndex(index);
+  }, [i18n]);
+
+  const memoizedColorIndex = useMemo(() => {
+    return colorIndex;
+  }, [colorIndex]);
+
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <FlatList
@@ -37,7 +46,7 @@ const LanguageScreen = () => {
         renderItem={({item, index}) => (
           <TouchableOpacity
             onPress={() => {
-              changeLanguage(item.code, index);
+              memoizedChangeLanguage(item.code, index);
             }}
             style={{
               height: 30,
@@ -50,7 +59,7 @@ const LanguageScreen = () => {
               style={{
                 width: 15,
                 height: 15,
-                backgroundColor: index === colorIndex ? '#3E52C1' : 'white',
+                backgroundColor: index === memoizedColorIndex ? '#3E52C1' : 'white',
                 borderRadius: 100,
                 borderWidth: 1,
               }}></View>

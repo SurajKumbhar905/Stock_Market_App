@@ -43,15 +43,15 @@ const PinScreen = () => {
         setisPinMatch(true);
       })
       .catch((error: AuthenticationError) => {
-        if (error.details == 'cancelled') {
-          console.log(
-            'authentication is fai',
-            error.code,
-            ' ',
-            error.message,
-            ' ',
-            error.details,
-          );
+        console.log(
+          'authentication is fai',
+          error.code,
+          ' ',
+          error.message,
+          ' ',
+          error.details,
+        );
+        if (error.details == 'cancelled' || error.details == 'Not supported') {
           setisAutofocus(true);
         }
       });
@@ -67,7 +67,15 @@ const PinScreen = () => {
         value[index] = item;
       }
       console.log(value);
+
     });
+    const allDigits = value.every(element => /^\d$/.test(element));
+            console.log(allDigits);
+            if (allDigits) {
+              setisAutofocus(false);
+              setisLoading(true);
+              setisPinMatch(true);
+            }
   };
 
   if (isLoading) {
@@ -127,7 +135,8 @@ const PinScreen = () => {
               fontSize: 14,
               fontFamily: 'Inter-Regular',
             }}>
-            Adding a pin number will make your investment secure {isAutofocus ? 'dhdh' : 'hdhdh'}
+            Adding a pin number will make your investment secure{' '}
+            {isAutofocus ? 'dhdh' : 'hdhdh'}
           </Text>
           <OtpView
             disabled={false}
@@ -136,9 +145,7 @@ const PinScreen = () => {
             onChange={handleOtpChange}
             isAutoFocus={isAutofocus}
           />
-          <TouchableOpacity style={{marginTop: 20}} onPress={()=>{
-            console.log('click')
-            setisAutofocus(true)}}>
+          <TouchableOpacity style={{marginTop: 20}} onPress={() => {}}>
             <Text
               style={{
                 color: '#3E52C1',
@@ -161,7 +168,15 @@ const PinScreen = () => {
           height={55}
           title="Confirm"
           width={'90%'}
-          onPress={() => {}}
+          onPress={() => {
+            const allDigits = value.every(element => /^\d$/.test(element));
+            console.log(allDigits);
+            if (allDigits) {
+              setisAutofocus(false);
+              setisLoading(true);
+              setisPinMatch(true);
+            }
+          }}
         />
       </View>
     </SafeAreaView>

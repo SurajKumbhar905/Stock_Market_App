@@ -27,7 +27,7 @@ import {useTranslation} from 'react-i18next';
 
 export type AppStacParamList = {
   Home: undefined;
-  PortfolioScreen: undefined;
+  Portfolio: undefined;
   OrderScreen: undefined;
   NewesScreen: undefined;
   Setting: undefined;
@@ -137,7 +137,7 @@ const AppStack = () => {
           ),
         }}></Tab.Screen>
       <Tab.Screen
-        name="PortfolioScreen"
+        name="Portfolio"
         component={PortfolioScreen}
         options={{
           tabBarIcon({focused}) {
@@ -150,9 +150,9 @@ const AppStack = () => {
           // headerTransparent : true,
           headerTitle: props => (
             <DefaultNavigationBar
-              children="PortfolioScreen"
-              showBackButton={false}
-              showTitle={false}
+              children="Portfolio"
+              showBackButton={true}
+              showTitle={true}
             />
           ),
         }}></Tab.Screen>
